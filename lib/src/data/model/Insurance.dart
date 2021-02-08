@@ -1,33 +1,14 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-class Insurance extends Equatable {
-  final double insuranceId;
-  final String name;
+part 'insurance.freezed.dart';
+part 'insurance.g.dart';
 
-  Insurance({
-    @required this.insuranceId,
-    @required this.name,
-  });
+@freezed
+abstract class Insurance with _$Insurance {
+  const factory Insurance(double insuranceId, String name) = _Insurance;
 
-  @override
-  List<Object> get props => [insuranceId, name];
-
-  @override
-  String toString() {
-    return 'Insurance {insuranceId: $insuranceId, name: $name}';
-  }
-
-  static Insurance fromJson(Map<String, Object> json) {
-    return Insurance(
-        insuranceId: json['insuranceId'] as double,
-        name: json['name'] as String);
-  }
-
-  Map<String, Object> toDocument() {
-    return {
-      'insuranceId': insuranceId.toString(),
-      'name': name,
-    };
-  }
+  factory Insurance.fromJson(Map<String, dynamic> json) =>
+      _$InsuranceFromJson(json);
 }

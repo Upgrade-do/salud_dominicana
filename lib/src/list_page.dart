@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:salud_dominicana/src/data/model/Insurance.dart';
+import 'package:salud_dominicana/src/data/model/insurance.dart';
 import 'package:salud_dominicana/src/data/repositories/insurance_repository.dart';
 import 'package:salud_dominicana/src/data/repositories/mock_insurance_repository.dart';
 
@@ -12,7 +12,15 @@ class ListPage extends StatelessWidget {
         stream: _db.getInsurances(),
         builder:
             (BuildContext context, AsyncSnapshot<List<Insurance>> insurances) {
-          if (!insurances.hasData) return Text("Loading...");
+          if (!insurances.hasData)
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(80.0),
+                    child: Text("Loading..."))
+              ],
+            );
           if (insurances.data.length == 0)
             return Center(
               child: ListView(
