@@ -23,7 +23,7 @@ class MockInsuranceRepository extends InsuranceRepository {
       Insurance(10033, 'name 5'),
     ];
 
-     addState(InsuranceResult(list, 'no'));
+     addState(InsuranceResult(list, 'no error'));
      return state;
   }
 }

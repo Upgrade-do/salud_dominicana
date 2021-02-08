@@ -4,6 +4,7 @@
     strong-mode:
       implicit-casts: false
       implicit-dynamic: false
+
     errors:
       # treat missing required parameters as a warning (not a hint)
       missing_required_param: warning
@@ -11,6 +12,11 @@
       missing_return: warning
       # allow having TODOs in the code
       todo: ignore
+
     exclude:
        - "**/*.g.dart"
        - "**/*.freezed.dart"
+
+     linter:
+       rules:
+         public_member_api_docs: false

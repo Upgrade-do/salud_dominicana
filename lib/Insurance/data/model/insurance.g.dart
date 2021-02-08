@@ -6,7 +6,6 @@ part of 'insurance.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// ignore: non_constant_identifier_names
 _$_Insurance _$_$_InsuranceFromJson(Map<String, dynamic> json) {
   return _$_Insurance(
     (json['insuranceId'] as num)?.toDouble(),

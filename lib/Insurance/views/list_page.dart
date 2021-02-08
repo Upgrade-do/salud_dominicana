@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:salud_dominicana/Insurance/data/model/insurance.dart';
 import 'package:salud_dominicana/Insurance/repositories/insurance_repository.dart';
 import 'package:salud_dominicana/Insurance/repositories/mock_insurance_repository.dart';
-import 'package:salud_dominicana/Utils/UI/size_config.dart';
 
 //fake request
 class FakeHTTPClient {
@@ -34,11 +35,12 @@ final responseInsuranceProvider = FutureProvider<List<Insurance>>( (ref) async {
 
 
 
-class ListPage extends StatelessWidget {
+class ListPage extends HookWidget {
   final InsuranceRepository _db = MockInsuranceRepository();
 
   @override
   Widget build(BuildContext context) {
+    final value = useProvider(responseProvider('dime toh'));
     return StreamBuilder<InsuranceResult>(
         stream: _db.getInsurances(),
         builder:
@@ -49,19 +51,13 @@ class ListPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(80.0),
-                  child: Consumer(
-                    builder: (context, watch, child) {
-                      final responseAsyncValue = watch(
-                          responseProvider('dime toh'));
-                      return responseAsyncValue.map(
+                  child:  value.map(
                           data: (_) => Text(_.value),
                           loading: (_) => CircularProgressIndicator(),
-                          error: (_) => Text(_.error.toString()));
-                    },
+                          error: (_) => Text(_.error.toString())
+                    )
                   ),
-                ),
-              ],
-            );
+                ]);
           }
           if (insurances.data.success.isEmpty) {
             return Center(
