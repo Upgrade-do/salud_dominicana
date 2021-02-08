@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:salud_dominicana/src/data/model/insurance.dart';
-import 'package:salud_dominicana/src/data/repositories/insurance_repository.dart';
-import 'package:salud_dominicana/src/data/repositories/mock_insurance_repository.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:salud_dominicana/Insurance/data/model/insurance.dart';
+import 'package:salud_dominicana/Insurance/repositories/insurance_repository.dart';
+import 'package:salud_dominicana/Insurance/repositories/mock_insurance_repository.dart';
+import 'package:salud_dominicana/Utils/UI/size_config.dart';
 
 //fake request
 class FakeHTTPClient {
@@ -31,35 +32,38 @@ final responseInsuranceProvider = FutureProvider<List<Insurance>>( (ref) async {
   return http.getInsurance();
 });
 
+
+
 class ListPage extends StatelessWidget {
   final InsuranceRepository _db = MockInsuranceRepository();
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Insurance>>(
-        stream: _db.getInsurances().first.asStream(),
+    return StreamBuilder<InsuranceResult>(
+        stream: _db.getInsurances(),
         builder:
-            (BuildContext context, AsyncSnapshot<List<Insurance>> insurances) {
+            (BuildContext context, AsyncSnapshot<InsuranceResult> insurances) {
           if (!insurances.hasData) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(80.0),
-                    child: Consumer(
-                        builder: (context, watch, child) {
-                          final responseAsyncValue = watch(responseProvider('dime th'));
-                          return responseAsyncValue.map(
-                              data:  (_) => Text(_.value),
-                              loading: (_) => CircularProgressIndicator(),
-                              error: (_) => Text(_.error.toString()));
-                        },
-                    ),
+                  padding: const EdgeInsets.all(80.0),
+                  child: Consumer(
+                    builder: (context, watch, child) {
+                      final responseAsyncValue = watch(
+                          responseProvider('dime toh'));
+                      return responseAsyncValue.map(
+                          data: (_) => Text(_.value),
+                          loading: (_) => CircularProgressIndicator(),
+                          error: (_) => Text(_.error.toString()));
+                    },
+                  ),
                 ),
               ],
             );
           }
-          if (insurances.data.length == 0)
+          if (insurances.data.success.isEmpty) {
             return Center(
               child: ListView(
                 shrinkWrap: true,
@@ -85,11 +89,12 @@ class ListPage extends StatelessWidget {
                 ],
               ),
             );
+          }
           return Column(
             children: <Widget>[
               Flexible(
                 child: ListView(
-                  children: _buildInsurancesList(insurances.data),
+                  children: _buildInsurancesList(insurances.data.success),
                 ),
               ),
             ],
@@ -98,7 +103,7 @@ class ListPage extends StatelessWidget {
   }
 
   List<Widget> _buildInsurancesList(List<Insurance> insurances) {
-    List<Widget> data = [];
+    var data = <Widget>[];
     insurances.forEach((insurance) {
       data.add(_buildExpenseItem(insurance));
     });
