@@ -1,5 +1,5 @@
 
-import 'package:salud_dominicana/Insurance/data/model/insurance.dart';
+import 'package:salud_dominicana/Insurance/data/model/insurance/insurance.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class InsuranceList extends StateNotifier<List<Insurance>> {

@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/all.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:salud_dominicana/Insurance/data/model/insurance.dart';
+import 'package:salud_dominicana/Insurance/data/model/insurance/insurance.dart';
 import 'package:salud_dominicana/Insurance/repositories/insurance_repository.dart';
-import 'package:salud_dominicana/Insurance/repositories/mock_insurance_repository.dart';
 
 //fake request
 class FakeHTTPClient {

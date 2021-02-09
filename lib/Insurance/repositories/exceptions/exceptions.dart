@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'exceptions.freezed.dart';
+
+
+// freezed union class generated to handle errors in a graceful way
 
 @freezed
 abstract class InsuranceFailure with _$InsuranceFailure {
@@ -22,7 +26,7 @@ class InsuranceException implements Exception {
   @override
   String toString() {
     return '''
-Insurance Error: ${failure?.toString()}
+Todo Error: ${failure?.toString()}
     ''';
   }
 }

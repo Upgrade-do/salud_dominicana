@@ -16,7 +16,3 @@
     exclude:
        - "**/*.g.dart"
        - "**/*.freezed.dart"
-
-     linter:
-       rules:
-         public_member_api_docs: false
