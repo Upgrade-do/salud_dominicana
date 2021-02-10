@@ -37,8 +37,9 @@ class UserPreferences {
     if (idUsers == null) {
       return <User>[];
     }
-    // else {
-    //   return idUsers.map<User>(getUser).toList();
-    // }
+    else {
+      return <User>[];
+       // return idUsers.map<User>(getUser).toList();
+    }
   }
 }

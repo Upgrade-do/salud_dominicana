@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:salud_dominicana/Insurance/data/model/insurance/insurance.dart';
-import 'package:salud_dominicana/Insurance/repositories/insurance_repository.dart';
+import 'package:salud_dominicana/Modules/Insurance/data/model/insurance/insurance.dart';
+import 'package:salud_dominicana/Modules/Insurance/repositories/insurance_repository.dart';
+import 'package:salud_dominicana/Modules/Main/views/main_app_bar.dart';
 
 //fake request
 class FakeHTTPClient {
@@ -35,66 +36,76 @@ final responseInsuranceProvider = FutureProvider<List<Insurance>>( (ref) async {
 
 class ListPage extends HookWidget {
   final InsuranceRepository _db = MockInsuranceRepository();
+  final value = useProvider(responseProvider('dime toh'));
+  final isEmpty = Center(
+    child: ListView(
+      shrinkWrap: true,
+      children: <Widget>[
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Text(
+              '(✿◠◡◠)',
+              style: TextStyle(fontSize: 60),
+            ),
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'add some insurances.',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    final value = useProvider(responseProvider('dime toh'));
+
+    final onError = Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(80.0),
+            child: value.map(
+                data: (_) => Text(_.value),
+                loading: (_) => CircularProgressIndicator(),
+                error: (_) => Text(_.error.toString())
+            ),
+          ),
+        ]);
+
     return StreamBuilder<InsuranceResult>(
         stream: _db.getInsurances(),
         builder:
             (BuildContext context, AsyncSnapshot<InsuranceResult> insurances) {
-          if (!insurances.hasData) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(80.0),
-                  child:  value.map(
-                          data: (_) => Text(_.value),
-                          loading: (_) => CircularProgressIndicator(),
-                          error: (_) => Text(_.error.toString())
-                    )
-                  ),
-                ]);
-          }
-          if (insurances.data.success.isEmpty) {
-            return Center(
-              child: ListView(
-                shrinkWrap: true,
+              if (!insurances.hasData) {
+                return HomeAppBar(page: onError);
+              }
+              if (insurances.data.success.isEmpty) {
+                return HomeAppBar(page: isEmpty);
+              }
+
+              final insuranceList = Column(
                 children: <Widget>[
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Text(
-                        '(✿◠◡◠)',
-                        style: TextStyle(fontSize: 60),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'add some insurances.',
-                        style: TextStyle(fontSize: 18),
-                      ),
+                  Flexible(
+                    child: ListView(
+                      children: _buildInsurancesList(
+                          insurances.data.success),
                     ),
                   ),
                 ],
-              ),
-            );
-          }
-          return Column(
-            children: <Widget>[
-              Flexible(
-                child: ListView(
-                  children: _buildInsurancesList(insurances.data.success),
-                ),
-              ),
-            ],
-          );
-        });
-  }
+              );
+
+              return HomeAppBar(page: insuranceList);
+            }
+         );
+    }
+
 
   List<Widget> _buildInsurancesList(List<Insurance> insurances) {
     var data = <Widget>[];

@@ -103,7 +103,7 @@ class _UserPageState extends State<UserPage> {
       );
 
   Widget buildAvatar() {
-    final double size = 64;
+    const double size = 64;
 
     if (user.imagePath.isNotEmpty) {
       return CircleAvatar(

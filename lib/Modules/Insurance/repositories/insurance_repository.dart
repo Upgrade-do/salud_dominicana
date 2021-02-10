@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:salud_dominicana/Insurance/data/model/insurance/insurance.dart';
+
+import 'package:salud_dominicana/Modules/Insurance/data/model/insurance/insurance.dart';
 
 abstract class InsuranceRepository {
   Stream<InsuranceResult> getInsurances();

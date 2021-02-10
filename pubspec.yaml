@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
+  cupertino_icons:
   equatable: ^1.2.6
 
   #good for mocks
@@ -60,7 +60,7 @@ dev_dependencies:
     sdk: flutter
 
   # linters
-  pedantic: ^1.10.0
+  pedantic:
   very_good_analysis: ^1.0.4
 
   #code generator
