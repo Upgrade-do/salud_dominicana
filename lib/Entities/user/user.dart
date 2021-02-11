@@ -1,7 +1,4 @@
-
-
 import 'package:salud_dominicana/Entities/settings/settings.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
@@ -18,7 +15,9 @@ abstract class User with _$User {
     Settings settings,
   }) = _User;
 
-  factory User.fromJson(Map<String, dynamic> json) =>
-      _$UserFromJson(json);
+  /// A necessary factory constructor for creating a new User instance
+  /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
+  /// The constructor is named after the source class, in this case, User.
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 

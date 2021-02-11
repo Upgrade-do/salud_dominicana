@@ -18,11 +18,11 @@ class UserPreferences {
     await _preferences.setString(idUser, json);
   }
 
-  // static User getUser(String idUser) {
-  //   final json = _preferences.getString(idUser);
-  //
-  //   return User.fromJson(jsonDecode(json));
-  // }
+  static User getUser(String idUser) {
+    final  json = _preferences.getString(idUser) as User;
+
+    return User.fromJson(json.toJson());
+  }
 
   static Future addUsers(User user) async {
     final idUsers = _preferences.getStringList(_keyUsers) ?? <String>[];
@@ -38,8 +38,8 @@ class UserPreferences {
       return <User>[];
     }
     else {
-      return <User>[];
-       // return idUsers.map<User>(getUser).toList();
+      //return <User>[];
+       return idUsers.map<User>(getUser).toList();
     }
   }
 }

@@ -29,7 +29,6 @@ dependencies:
 
   #serialization
   json_annotation: ^3.1.1
-  json_serializable: ^3.5.1
 
   #much better logs
   logger: ^0.9.4
@@ -58,6 +57,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+ #Serialization
+  json_serializable: ^3.5.1
 
   # linters
   pedantic:

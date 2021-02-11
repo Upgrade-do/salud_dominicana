@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:salud_dominicana/Modules/Insurance/views/list_page.dart';
 import 'package:salud_dominicana/Utils/UI/size_config.dart';
 
 class HomeAppBar extends StatelessWidget {
   final Widget page;
 
   const HomeAppBar({@required this.page});
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
