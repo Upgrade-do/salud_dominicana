@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:salud_dominicana/Entities/settings/settings.dart';
 import 'package:salud_dominicana/Entities/user/user.dart';
 import 'package:salud_dominicana/Modules/Custom_Widgets/random/birthday_widget.dart';
 import 'package:salud_dominicana/Modules/Custom_Widgets/random/button_widget.dart';
@@ -11,32 +13,15 @@ import 'package:salud_dominicana/Modules/Custom_Widgets/random/switch_widget.dar
 import 'package:salud_dominicana/Utils/Storange/user_preferences.dart';
 import 'package:uuid/uuid.dart';
 
-class UserPage extends StatefulWidget {
-  final String idUser;
+class UserPage extends HookWidget {
+  final String idUser = 'id';
 
-  const UserPage({
-    Key key,
-    this.idUser,
-  }) : super(key: key);
-
-  @override
-  _UserPageState createState() => _UserPageState();
-}
-
-class _UserPageState extends State<UserPage> {
-  User user;
-
-  @override
-  void initState() {
-    super.initState();
-
-    final id = Uuid().v4();
-    print('Id: $id');
-
-    user = widget.idUser == null
-        ? User(id: id)
-        : User(id: id); //UserPreferences.getUser(widget.idUser);
-  }
+  final User user = User(
+    id: '234234',
+    name: "Jose", dateOfBirth: DateTime.now(),
+    imagePath: 'dfsfsdfsdfsf',
+    pets: ['rrrrr'],
+    settings: Settings());
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -44,7 +29,7 @@ class _UserPageState extends State<UserPage> {
           child: Stack(
             children: [
               buildUsers(),
-              if (widget.idUser == null)
+              if (idUser == null)
                 Positioned(
                   left: 16,
                   top: 24,
@@ -53,7 +38,7 @@ class _UserPageState extends State<UserPage> {
                     child: Icon(Icons.arrow_back, size: 32),
                   ),
                 ),
-              if (widget.idUser != null)
+              if (idUser != null)
                 Positioned(
                   right: 16,
                   top: 24,
@@ -94,11 +79,11 @@ class _UserPageState extends State<UserPage> {
           if (image == null) return;
 
           final directory = await getApplicationDocumentsDirectory();
-          final id = '_${widget.idUser}_${Uuid().v4()}';
+          final id = '_${idUser}_${Uuid().v4()}';
           final imageFile = File('${directory.path}/${id}_avatar.png');
           final newImage = await File(image.path).copy(imageFile.path);
 
-          setState(() => user = user.copyWith(imagePath: newImage.path));
+         // user = user.copyWith(imagePath: newImage.path))
         },
       );
 
@@ -108,7 +93,7 @@ class _UserPageState extends State<UserPage> {
     if (user.imagePath.isNotEmpty) {
       return CircleAvatar(
         radius: size,
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Colors.yellow,
         child: ClipOval(
           child: Image.file(
             File(user.imagePath),
@@ -121,7 +106,7 @@ class _UserPageState extends State<UserPage> {
     } else {
       return CircleAvatar(
         radius: size,
-        backgroundColor: Theme.of(context).unselectedWidgetColor,
+        backgroundColor: Colors.blue,
         child: Icon(Icons.add, color: Colors.white, size: size),
       );
     }
@@ -135,28 +120,27 @@ class _UserPageState extends State<UserPage> {
             border: OutlineInputBorder(),
             hintText: 'Your Name',
           ),
-          onChanged: (name) => setState(() => user = user.copyWith(name: name)),
+          onChanged: (name) {} //setState(() => user = user.copyWith(name: name))
         ),
       );
 
   Widget buildBirthday() => BirthdayWidget(
         birthday: user.dateOfBirth,
-        onChangedBirthday: (dateOfBirth) =>
-            setState(() => user = user.copyWith(dateOfBirth: dateOfBirth)),
+        onChangedBirthday: (dateOfBirth) {}
+           // setState(() => user = user.copyWith(dateOfBirth: dateOfBirth)),
       );
 
   Widget buildPets() => buildTitle(
         title: 'Pets',
         child: PetsButtonsWidget(
           pets: user.pets,
-          onSelectedPet: (pet) => setState(() {
+          onSelectedPet: (pet) {
             final pets = user.pets.contains(pet)
                 ? (List.of(user.pets)..remove(pet))
                 : (List.of(user.pets)..add(pet));
 
-            setState(() => user = user.copyWith(pets: pets));
+           // setState(() => user = user.copyWith(pets: pets));
           }),
-        ),
       );
 
   Widget buildAllowNotifications() => SwitchWidget(
@@ -167,7 +151,7 @@ class _UserPageState extends State<UserPage> {
             allowNotifications: allowNotifications,
           );
 
-          setState(() => user = user.copyWith(settings: settings));
+         // setState(() => user = user.copyWith(settings: settings));
         },
       );
 
@@ -179,14 +163,14 @@ class _UserPageState extends State<UserPage> {
             allowNewsletter: allowNewsletter,
           );
 
-          setState(() => user = user.copyWith(settings: settings));
+          //setState(() => user = user.copyWith(settings: settings));
         },
       );
 
   Widget buildButton() => ButtonWidget(
       text: 'Save',
       onClicked: () async {
-        final isNewUser = widget.idUser == null;
+        final isNewUser = idUser == null;
 
         if (isNewUser) {
           await UserPreferences.addUsers(user);

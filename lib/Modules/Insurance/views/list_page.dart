@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/all.dart';
+import 'package:hooks_riverpod/all.dart';
 import 'package:salud_dominicana/Modules/Insurance/data/model/insurance/insurance.dart';
 import 'package:salud_dominicana/Modules/Insurance/repositories/insurance_repository.dart';
 import 'package:salud_dominicana/Modules/Main/views/main_app_bar.dart';
@@ -9,34 +10,62 @@ import 'package:salud_dominicana/Modules/Main/views/main_app_bar.dart';
 //fake request
 class FakeHTTPClient {
   Future<String> get(String url) async {
-    await Future<String>.delayed(const Duration(seconds: 1));
+    await Future<String>.delayed(const Duration(seconds: 2));
     return 'Response from $url';
-  }
-
-  Future<List<Insurance>> getInsurance() async {
-    await Future<Insurance>.delayed(const Duration(seconds: 1));
-    return [Insurance(100, 'Name person')];
   }
 }
 
-
+//MOCK
 final fakeHttpClientProvider = Provider((ref) => FakeHTTPClient());
-
-final responseProvider = FutureProvider.autoDispose.family<String, String>( (ref, url) async {
+final responseProvider =
+    FutureProvider.autoDispose.family<String, String>((ref, url) async {
   final http = ref.read(fakeHttpClientProvider);
   return http.get(url);
 });
 
-final responseInsuranceProvider = FutureProvider<List<Insurance>>( (ref) async {
-  final http = ref.read(fakeHttpClientProvider);
-  return http.getInsurance();
-});
-
-
-
 class ListPage extends HookWidget {
   final InsuranceRepository _db = MockInsuranceRepository();
-  final value = useProvider(responseProvider('dime toh'));
+
+  @override
+  Widget build(BuildContext context) {
+    final value =
+        useProvider(responseProvider('Error: did not find any records'));
+
+    return StreamBuilder<InsuranceResult>(
+        stream: _db.getInsurances(),
+        builder:
+            (BuildContext context, AsyncSnapshot<InsuranceResult> insurances) {
+          if (!insurances.hasData) {
+            final onError =
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Padding(
+                  padding: const EdgeInsets.all(80.0),
+                  child: value.map(
+                      data: (_) => Text(_.value),
+                      loading: (_) => CircularProgressIndicator(),
+                      error: (_) => Text(_.error.toString())))
+            ]);
+
+            return HomeAppBar(page: onError);
+          }
+          if (insurances.data.success.isEmpty) {
+            return HomeAppBar(page: isEmpty);
+          }
+
+          final insuranceList = Column(
+            children: <Widget>[
+              Flexible(
+                child: ListView(
+                  children: _buildInsurancesList(insurances.data.success),
+                ),
+              ),
+            ],
+          );
+
+          return HomeAppBar(page: insuranceList);
+        });
+  }
+
   final isEmpty = Center(
     child: ListView(
       shrinkWrap: true,
@@ -62,50 +91,6 @@ class ListPage extends HookWidget {
       ],
     ),
   );
-
-  @override
-  Widget build(BuildContext context) {
-
-    final onError = Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(80.0),
-            child: value.map(
-                data: (_) => Text(_.value),
-                loading: (_) => CircularProgressIndicator(),
-                error: (_) => Text(_.error.toString())
-            ),
-          ),
-        ]);
-
-    return StreamBuilder<InsuranceResult>(
-        stream: _db.getInsurances(),
-        builder:
-            (BuildContext context, AsyncSnapshot<InsuranceResult> insurances) {
-              if (!insurances.hasData) {
-                return HomeAppBar(page: onError);
-              }
-              if (insurances.data.success.isEmpty) {
-                return HomeAppBar(page: isEmpty);
-              }
-
-              final insuranceList = Column(
-                children: <Widget>[
-                  Flexible(
-                    child: ListView(
-                      children: _buildInsurancesList(
-                          insurances.data.success),
-                    ),
-                  ),
-                ],
-              );
-
-              return HomeAppBar(page: insuranceList);
-            }
-         );
-    }
-
 
   List<Widget> _buildInsurancesList(List<Insurance> insurances) {
     var data = <Widget>[];

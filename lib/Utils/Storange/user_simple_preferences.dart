@@ -10,16 +10,20 @@ class UserSimplePreferences {
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();
 
+  //user name
   static Future setUsername(String username) async =>
       await _preferences.setString(_keyUsername, username);
 
   static String getUsername() => _preferences.getString(_keyUsername);
 
+  // pets
   static Future setPets(List<String> pets) async =>
       await _preferences.setStringList(_keyPets, pets);
 
   static List<String> getPets() => _preferences.getStringList(_keyPets);
 
+
+  //birth day
   static Future setBirthday(DateTime dateOfBirth) async {
     final birthday = dateOfBirth.toIso8601String();
 
@@ -31,4 +35,6 @@ class UserSimplePreferences {
 
     return birthday == null ? null : DateTime.tryParse(birthday);
   }
+
+  //
 }

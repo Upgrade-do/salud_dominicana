@@ -1,52 +1,30 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:salud_dominicana/Entities/user/user.dart';
 import 'package:salud_dominicana/Modules/Custom_Widgets/random/title_widget.dart';
 import 'package:salud_dominicana/Utils/Storange/user_preferences.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
 
-class _LoginPageState extends State<LoginPage> {
-  List<User> users;
+class LoginPage extends HookWidget {
+  final List<User> users = UserPreferences.getUsers();
 
-  @override
-  void initState() {
-    super.initState();
+  Widget buildUser(User user) {
+    final imageFile = File(user.imagePath);
 
-    users = UserPreferences.getUsers();
+    return ListTile(
+      tileColor: Colors.white24,
+      onTap: () {},
+      // } Navigator.of(context).pushReplacement(MaterialPageRoute(
+      //   builder: (context) => UserPage(idUser: user.id),
+      // )),
+      leading: user.imagePath.isEmpty
+          ? null
+          : CircleAvatar(backgroundImage: FileImage(imageFile)),
+      title: Text(user.name, style: TextStyle(fontSize: 24)),
+    );
   }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 96),
-                child: Column(
-                  children: <Widget>[
-                    TitleWidget(icon: Icons.login, text: 'Login'),
-                    const SizedBox(height: 48),
-                    Expanded(child: buildUsers()),
-                  ],
-                ),
-              ),
-              Positioned(
-                left: 16,
-                top: 24,
-                child: GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
-                  child: Icon(Icons.arrow_back, size: 32),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
 
   Widget buildUsers() {
     if (users.isEmpty) {
@@ -69,19 +47,33 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Widget buildUser(User user) {
-    final imageFile = File(user.imagePath);
-
-    return ListTile(
-      tileColor: Colors.white24,
-      onTap: () {},
-      // } Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //   builder: (context) => UserPage(idUser: user.id),
-      // )),
-      leading: user.imagePath.isEmpty
-          ? null
-          : CircleAvatar(backgroundImage: FileImage(imageFile)),
-      title: Text(user.name, style: TextStyle(fontSize: 24)),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 96),
+              child: Column(
+                children: <Widget>[
+                  TitleWidget(icon: Icons.login, text: 'Login'),
+                  const SizedBox(height: 48),
+                  Expanded(child: buildUsers()),
+                ],
+              ),
+            ),
+            Positioned(
+              left: 16,
+              top: 24,
+              child: GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: Icon(Icons.arrow_back, size: 32),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
