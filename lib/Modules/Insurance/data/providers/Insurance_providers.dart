@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:salud_dominicana/Modules/Insurance/data/model/insurance/insurance.dart';
+import 'package:salud_dominicana/Entities/insurance/insurance.dart';
 import 'package:salud_dominicana/Modules/Insurance/data/state_notifiers/insurance_list_nofifier.dart';
 
 final insuranceListProvider = StateNotifierProvider<InsuranceList>((_) {
