@@ -15,20 +15,25 @@ class HomeAppBar extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
             icon: Icon(
-              Icons.menu,
+              Icons.watch,
               color: Colors.blue,
               size: 30,
             ),
             onPressed: () {}),
-        title: Text('Home', style: TextStyle(color: Colors.black),),
-        actions: [Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Icon(
-            Icons.notifications,
-            size: 30,
-            color: Colors.blue,
-          ),
-        )],
+        title: Text(
+          'Home',
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Icon(
+              Icons.notifications,
+              size: 30,
+              color: Colors.blue,
+            ),
+          )
+        ],
       ),
       body: page,
     );

@@ -8,9 +8,9 @@
 
 import 'package:auto_route/auto_route.dart';
 
-import '../../Modules/Insurance/views/list_page.dart';
+import '../../Modules/Insurance/views/insurance_list_page.dart';
 import '../../Modules/Login/views/login_page.dart';
-import '../../Modules/Login/views/user_page.dart';
+import '../../Modules/Profile/views/user_page.dart';
 
 class Routes {
   static const String userPage = '/user-page';

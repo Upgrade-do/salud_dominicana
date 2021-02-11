@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'Localizations/app_localizations.dart';
 import 'Routes/Signed/signed_router.gr.dart' as r;
 import 'Utils/Storange/user_preferences.dart';
 
-void main()  async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -14,29 +17,47 @@ void main()  async {
 
   await UserPreferences.init();
 
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final navigatorWraper = ExtendedNavigator.builder(
         router: r.SignedRouter(),
         builder: (context, extendedNav) => Theme(
-          data: ThemeData(brightness: Brightness.dark),
-          child: extendedNav,
-        ));
+              data: ThemeData(brightness: Brightness.dark),
+              child: extendedNav,
+            ));
 
     final application = MaterialApp(
+        supportedLocales: [
+          Locale('en', 'US'),
+          Locale('es', 'MX'),
+        ],
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          // Check if the current device locale is supported
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode &&
+                supportedLocale.countryCode == locale.countryCode) {
+              return supportedLocale;
+            }
+          }
+          // If the locale of the device is not supported, use the first one
+          // from the list (English, in this case).
+          return supportedLocales.first;
+        },
         debugShowCheckedModeBanner: false,
         title: 'Salud Dominicana',
-        builder: navigatorWraper
-    );
+        builder: navigatorWraper);
 
     return ProviderScope(child: application);
   }
 }
-
-

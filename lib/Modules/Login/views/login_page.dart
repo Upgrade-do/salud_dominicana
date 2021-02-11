@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:salud_dominicana/Entities/user/user.dart';
-import 'package:salud_dominicana/Modules/Custom_Widgets/random/title_widget.dart';
+import 'package:salud_dominicana/Modules/CustomWidgets/random/title_widget.dart';
 import 'package:salud_dominicana/Utils/Storange/user_preferences.dart';
 
 

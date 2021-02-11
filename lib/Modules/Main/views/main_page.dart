@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:salud_dominicana/Modules/Custom_Widgets/random/button_widget.dart';
-import 'package:salud_dominicana/Modules/Custom_Widgets/random/title_widget.dart';
+import 'package:salud_dominicana/Modules/CustomWidgets/random/button_widget.dart';
+import 'package:salud_dominicana/Modules/CustomWidgets/random/title_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
