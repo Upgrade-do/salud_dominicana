@@ -29,7 +29,7 @@ class ListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final value =
-        useProvider(responseProvider('Error: did not find any records'));
+        useProvider(responseProvider('Error: did not find any records !!'));
 
     return StreamBuilder<InsuranceResult>(
         stream: _db.getInsurances(),
