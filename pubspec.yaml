@@ -71,16 +71,11 @@ flutter:
   assets:
     - lib/Assets/localize/en.json
     - lib/Assets/localize/es.json
-
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon/icon.png"
+    - lib/Assets/images/application_icons/demo-icon.png
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
   #generates android and IOS icons
   flutter_launcher_icons: ^0.8.1
