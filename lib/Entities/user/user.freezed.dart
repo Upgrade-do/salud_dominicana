@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'user.dart';
 
@@ -16,14 +16,13 @@ User _$UserFromJson(Map<String, dynamic> json) {
 class _$UserTearOff {
   const _$UserTearOff();
 
-// ignore: unused_element
   _User call(
-      {String id,
-      String name,
-      DateTime dateOfBirth,
-      String imagePath,
-      List<String> pets,
-      Settings settings}) {
+      {String id = 'id',
+      String name = 'name',
+      DateTime? dateOfBirth,
+      String imagePath = 'path',
+      List<String> pets = const ['pets list'],
+      Settings? settings}) {
     return _User(
       id: id,
       name: name,
@@ -34,24 +33,22 @@ class _$UserTearOff {
     );
   }
 
-// ignore: unused_element
   User fromJson(Map<String, Object> json) {
     return User.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
   String get id;
   String get name;
-  DateTime get dateOfBirth;
+  DateTime? get dateOfBirth;
   String get imagePath;
   List<String> get pets;
-  Settings get settings;
+  Settings? get settings;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -65,12 +62,12 @@ abstract class $UserCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      DateTime dateOfBirth,
+      DateTime? dateOfBirth,
       String imagePath,
       List<String> pets,
-      Settings settings});
+      Settings? settings});
 
-  $SettingsCopyWith<$Res> get settings;
+  $SettingsCopyWith<$Res>? get settings;
 }
 
 /// @nodoc
@@ -83,30 +80,32 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object dateOfBirth = freezed,
-    Object imagePath = freezed,
-    Object pets = freezed,
-    Object settings = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? dateOfBirth = freezed,
+    Object? imagePath = freezed,
+    Object? pets = freezed,
+    Object? settings = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      dateOfBirth:
-          dateOfBirth == freezed ? _value.dateOfBirth : dateOfBirth as DateTime,
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth as DateTime?,
       imagePath: imagePath == freezed ? _value.imagePath : imagePath as String,
       pets: pets == freezed ? _value.pets : pets as List<String>,
-      settings: settings == freezed ? _value.settings : settings as Settings,
+      settings: settings == freezed ? _value.settings : settings as Settings?,
     ));
   }
 
   @override
-  $SettingsCopyWith<$Res> get settings {
+  $SettingsCopyWith<$Res>? get settings {
     if (_value.settings == null) {
       return null;
     }
-    return $SettingsCopyWith<$Res>(_value.settings, (value) {
+
+    return $SettingsCopyWith<$Res>(_value.settings!, (value) {
       return _then(_value.copyWith(settings: value));
     });
   }
@@ -120,13 +119,13 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      DateTime dateOfBirth,
+      DateTime? dateOfBirth,
       String imagePath,
       List<String> pets,
-      Settings settings});
+      Settings? settings});
 
   @override
-  $SettingsCopyWith<$Res> get settings;
+  $SettingsCopyWith<$Res>? get settings;
 }
 
 /// @nodoc
@@ -140,52 +139,57 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object dateOfBirth = freezed,
-    Object imagePath = freezed,
-    Object pets = freezed,
-    Object settings = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? dateOfBirth = freezed,
+    Object? imagePath = freezed,
+    Object? pets = freezed,
+    Object? settings = freezed,
   }) {
     return _then(_User(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      dateOfBirth:
-          dateOfBirth == freezed ? _value.dateOfBirth : dateOfBirth as DateTime,
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth as DateTime?,
       imagePath: imagePath == freezed ? _value.imagePath : imagePath as String,
       pets: pets == freezed ? _value.pets : pets as List<String>,
-      settings: settings == freezed ? _value.settings : settings as Settings,
+      settings: settings == freezed ? _value.settings : settings as Settings?,
     ));
   }
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 
 /// @nodoc
 class _$_User implements _User {
   const _$_User(
-      {this.id,
-      this.name,
+      {this.id = 'id',
+      this.name = 'name',
       this.dateOfBirth,
-      this.imagePath,
-      this.pets,
+      this.imagePath = 'path',
+      this.pets = const ['pets list'],
       this.settings});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
 
+  @JsonKey(defaultValue: 'id')
   @override
   final String id;
+  @JsonKey(defaultValue: 'name')
   @override
   final String name;
   @override
-  final DateTime dateOfBirth;
+  final DateTime? dateOfBirth;
+  @JsonKey(defaultValue: 'path')
   @override
   final String imagePath;
+  @JsonKey(defaultValue: const ['pets list'])
   @override
   final List<String> pets;
   @override
-  final Settings settings;
+  final Settings? settings;
 
   @override
   String toString() {
@@ -238,10 +242,10 @@ abstract class _User implements User {
   const factory _User(
       {String id,
       String name,
-      DateTime dateOfBirth,
+      DateTime? dateOfBirth,
       String imagePath,
       List<String> pets,
-      Settings settings}) = _$_User;
+      Settings? settings}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -250,13 +254,13 @@ abstract class _User implements User {
   @override
   String get name;
   @override
-  DateTime get dateOfBirth;
+  DateTime? get dateOfBirth;
   @override
   String get imagePath;
   @override
   List<String> get pets;
   @override
-  Settings get settings;
+  Settings? get settings;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith;

@@ -4,7 +4,7 @@ import 'package:salud_dominicana/Utils/UI/size_config.dart';
 class HomeAppBar extends StatelessWidget {
   final Widget page;
 
-  const HomeAppBar({@required this.page});
+  const HomeAppBar({required this.page});
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

@@ -14,11 +14,11 @@ class AppLocalizations {
 
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
-  static AppLocalizations of(BuildContext context) {
+  static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  Map<String, String> _localizedStrings;
+  Map<String, String> _localizedStrings = {'': ''};
 
   Future<void> load() async {
     // Load the language JSON file from the "localize" folder
@@ -30,13 +30,11 @@ class AppLocalizations {
     _localizedStrings = jsonMap.map((key, dynamic value) {
       return MapEntry(key, value.toString());
     });
-
-    return true;
   }
 
   // This method will be called from every widget which needs a localized text
   String localized(String key) {
-    return _localizedStrings[key];
+    return _localizedStrings[key] ?? '';
   }
 }
 

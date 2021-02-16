@@ -36,33 +36,40 @@ class ListPage extends HookWidget {
         stream: _db.getInsurances(),
         builder:
             (BuildContext context, AsyncSnapshot<InsuranceResult> insurances) {
-          if (!insurances.hasData) {
-            final onError =
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Padding(
-                  padding: const EdgeInsets.all(80.0),
-                  child: value.map(
-                      data: (_) => Text(_.value),
-                      loading: (_) => CircularProgressIndicator(),
-                      error: (_) => Text(_.error.toString())))
-            ]);
+          final onError =
+              Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Padding(
+                padding: const EdgeInsets.all(80.0),
+                child: value.map(
+                    data: (_) => Text(_.value),
+                    loading: (_) => CircularProgressIndicator(),
+                    error: (_) => Text(_.error.toString())))
+          ]);
 
+          if (insurances.data == null) {
             return HomeAppBar(page: onError);
           }
-          if (insurances.data.success.isEmpty) {
+          ;
+
+          if (!insurances.hasData) {
+            return HomeAppBar(page: onError);
+          }
+
+          if (insurances.data!.success.isEmpty) {
             return HomeAppBar(page: isEmpty);
           }
 
-          final message = AppLocalizations.of(context).localized('test_string');
+          final message =
+              AppLocalizations.of(context)?.localized('test_string');
 
           final insuranceList = Column(
             children: <Widget>[
               SpaceH10(),
-              //  Text('localized test messaga: ${message}'),
+              Text('localized test messaga: ${message ?? 'is empty'}'),
               SpaceH10(),
               Flexible(
                 child: ListView(
-                  children: _buildInsurancesList(insurances.data.success),
+                  children: _buildInsurancesList(insurances.data!.success),
                 ),
               ),
             ],
@@ -107,6 +114,39 @@ class ListPage extends HookWidget {
   }
 
   Widget _buildExpenseItem(Insurance insurance) {
-    return Text(insurance.toString());
+    return Row(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(11),
+          margin: EdgeInsets.all(11),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Color(0xff6d04ff),
+          ),
+          child: Icon(
+            Icons.email,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(
+          width: 5.0,
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Email Verification',
+                style: TextStyle(color: Colors.black87),
+              ),
+              Text(
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, enim hic.',
+                style: TextStyle(color: Colors.black45),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

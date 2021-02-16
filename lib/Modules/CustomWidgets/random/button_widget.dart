@@ -5,8 +5,8 @@ class ButtonWidget extends StatelessWidget {
   final VoidCallback onClicked;
 
   const ButtonWidget({
-    @required this.text,
-    @required this.onClicked,
+    required this.text,
+    required this.onClicked,
   });
 
   @override

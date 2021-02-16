@@ -8,7 +8,7 @@ part of 'insurance.dart';
 
 _$_Insurance _$_$_InsuranceFromJson(Map<String, dynamic> json) {
   return _$_Insurance(
-    (json['insuranceId'] as num)?.toDouble(),
+    (json['insuranceId'] as num).toDouble(),
     json['name'] as String,
   );
 }

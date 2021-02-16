@@ -21,17 +21,15 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  get _builder => ExtendedNavigator.builder(
+      router: r.SignedRouter(),
+      builder: (context, extendedNav) => Theme(
+            data: ThemeData(brightness: Brightness.light),
+            child: extendedNav,
+          ));
 
   @override
   Widget build(BuildContext context) {
-    final navigatorWraper = ExtendedNavigator.builder(
-        router: r.SignedRouter(),
-        builder: (context, extendedNav) => Theme(
-              data: ThemeData(brightness: Brightness.dark),
-              child: extendedNav,
-            ));
-
     final application = MaterialApp(
         supportedLocales: [
           Locale('en', 'US'),
@@ -45,8 +43,8 @@ class App extends StatelessWidget {
         localeResolutionCallback: (locale, supportedLocales) {
           // Check if the current device locale is supported
           for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale.languageCode &&
-                supportedLocale.countryCode == locale.countryCode) {
+            if (supportedLocale.languageCode == locale?.languageCode &&
+                supportedLocale.countryCode == locale?.countryCode) {
               return supportedLocale;
             }
           }
@@ -56,7 +54,7 @@ class App extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         title: 'Salud Dominicana',
-        builder: navigatorWraper);
+        builder: _builder);
 
     return ProviderScope(child: application);
   }

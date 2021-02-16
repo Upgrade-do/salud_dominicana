@@ -8,8 +8,8 @@ part of 'settings.dart';
 
 _$_Settings _$_$_SettingsFromJson(Map<String, dynamic> json) {
   return _$_Settings(
-    allowNewsletter: json['allowNewsletter'] as bool ?? false,
-    allowNotifications: json['allowNotifications'] as bool ?? false,
+    allowNewsletter: json['allowNewsletter'] as bool? ?? false,
+    allowNotifications: json['allowNotifications'] as bool? ?? false,
   );
 }
 

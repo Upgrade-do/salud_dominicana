@@ -6,9 +6,9 @@ class SwitchWidget extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   const SwitchWidget({
-    @required this.title,
-    @required this.value,
-    @required this.onChanged,
+    required this.title,
+    required this.value,
+    required this.onChanged,
   });
 
   @override

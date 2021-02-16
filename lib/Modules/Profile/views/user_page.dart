@@ -11,12 +11,11 @@ import 'package:salud_dominicana/Modules/CustomWidgets/random/button_widget.dart
 import 'package:salud_dominicana/Modules/CustomWidgets/random/pets_buttons_widget.dart';
 import 'package:salud_dominicana/Modules/CustomWidgets/random/switch_widget.dart';
 import 'package:salud_dominicana/Utils/Storange/user_preferences.dart';
-import 'package:uuid/uuid.dart';
 
 class UserPage extends HookWidget {
   final String idUser = 'id';
 
-  final User user = User(
+  User user = User(
       id: '234234',
       name: 'Jose',
       dateOfBirth: DateTime.now(),
@@ -30,24 +29,14 @@ class UserPage extends HookWidget {
           child: Stack(
             children: [
               buildUsers(),
-              if (idUser == null)
-                Positioned(
-                  left: 16,
-                  top: 24,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Icon(Icons.arrow_back, size: 32),
-                  ),
+              Positioned(
+                right: 16,
+                top: 24,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Icon(Icons.logout, size: 32),
                 ),
-              if (idUser != null)
-                Positioned(
-                  right: 16,
-                  top: 24,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Icon(Icons.logout, size: 32),
-                  ),
-                ),
+              ),
             ],
           ),
         ),
@@ -80,11 +69,11 @@ class UserPage extends HookWidget {
           if (image == null) return;
 
           final directory = await getApplicationDocumentsDirectory();
-          final id = '_${idUser}_${Uuid().v4()}';
-          final imageFile = File('${directory.path}/${id}_avatar.png');
+          final id = '_${idUser}_${"4"}';
+          final imageFile = File('${directory?.path}/${id}_avatar.png');
           final newImage = await File(image.path).copy(imageFile.path);
 
-          // user = user.copyWith(imagePath: newImage.path))
+          user = user.copyWith(imagePath: newImage.path);
         },
       );
 
@@ -127,8 +116,11 @@ class UserPage extends HookWidget {
       );
 
   Widget buildBirthday() => BirthdayWidget(
-      birthday: user.dateOfBirth, onChangedBirthday: (dateOfBirth) {}
-      // setState(() => user = user.copyWith(dateOfBirth: dateOfBirth)),
+      birthday: user.dateOfBirth ?? DateTime.now(),
+      onChangedBirthday: (dateOfBirth) {
+        user = user.copyWith(dateOfBirth: dateOfBirth);
+      }
+      // setState(() => ),
       );
 
   Widget buildPets() => buildTitle(
@@ -140,54 +132,46 @@ class UserPage extends HookWidget {
                   ? (List.of(user.pets)..remove(pet))
                   : (List.of(user.pets)..add(pet));
 
-              // setState(() => user = user.copyWith(pets: pets));
+              user = user.copyWith(pets: pets);
             }),
       );
 
   Widget buildAllowNotifications() => SwitchWidget(
         title: 'Allow Notifications',
-        value: user.settings.allowNotifications,
+        value: (user.settings?.allowNotifications ?? false),
         onChanged: (allowNotifications) {
-          final settings = user.settings.copyWith(
+          final settings = user.settings?.copyWith(
             allowNotifications: allowNotifications,
           );
 
-          // setState(() => user = user.copyWith(settings: settings));
+          user = user.copyWith(settings: settings);
         },
       );
 
   Widget buildAllowNewsletter() => SwitchWidget(
         title: 'Allow Newsletter',
-        value: user.settings.allowNewsletter,
+        value: (user.settings?.allowNewsletter ?? false),
         onChanged: (allowNewsletter) {
-          final settings = user.settings.copyWith(
+          final settings = user.settings?.copyWith(
             allowNewsletter: allowNewsletter,
           );
 
-          //setState(() => user = user.copyWith(settings: settings));
+          user = user.copyWith(settings: settings);
         },
       );
 
   Widget buildButton() => ButtonWidget(
       text: 'Save',
       onClicked: () async {
-        final isNewUser = idUser == null;
-
-        if (isNewUser) {
+        if (true) {
           await UserPreferences.addUsers(user);
-          await UserPreferences.setUser(user);
-
-          // Navigator.of(context).pushReplacement(MaterialPageRoute(
-          //   builder: (context) => UserPage(idUser: user.id),
-          // ));
-        } else {
-          await UserPreferences.setUser(user);
         }
+        await UserPreferences.setUser(user);
       });
 
   Widget buildTitle({
-    @required String title,
-    @required Widget child,
+    required String title,
+    required Widget child,
   }) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

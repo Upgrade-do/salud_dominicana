@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class ProfileTags extends StatelessWidget {
   const ProfileTags({
-    Key key,
-    @required this.profileTags,
+    Key? key,
+    required this.profileTags,
   }) : super(key: key);
 
   final List<String> profileTags;

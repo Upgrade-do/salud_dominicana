@@ -5,9 +5,9 @@ class TitleWidget extends StatelessWidget {
   final String text;
 
   const TitleWidget({
-    Key key,
-    @required this.icon,
-    @required this.text,
+    Key? key,
+    required this.icon,
+    required this.text,
   }) : super(key: key);
 
   @override
