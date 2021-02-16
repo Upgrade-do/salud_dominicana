@@ -6,9 +6,9 @@ class BirthdayWidget extends StatefulWidget {
   final ValueChanged<DateTime> onChangedBirthday;
 
   const BirthdayWidget({
-    Key key,
-    @required this.birthday,
-    @required this.onChangedBirthday,
+    Key? key,
+    required this.birthday,
+    required this.onChangedBirthday,
   }) : super(key: key);
 
   @override
@@ -52,7 +52,8 @@ class _BirthdayWidgetState extends State<BirthdayWidget> {
         focusNode: focusNode,
         builder: (hasFocus) => TextFormField(
           controller: controller,
-          validator: (value) => value.isEmpty ? 'Is Required' : null,
+          validator: (value) =>
+              (value != null) ? 'Is Required' : 'is Not Required',
           decoration: InputDecoration(
             prefixText: ' ',
             hintText: 'Your birthday',
@@ -65,7 +66,7 @@ class _BirthdayWidgetState extends State<BirthdayWidget> {
   Future selectDate(BuildContext context) async {
     final birthday = await showDatePicker(
       context: context,
-      initialDate: widget.birthday ?? DateTime.now(),
+      initialDate: widget.birthday,
       firstDate: DateTime(1950),
       lastDate: DateTime(2100),
     );
@@ -82,10 +83,10 @@ class FocusBuilder extends StatefulWidget {
   final ValueChanged<bool> onChangeVisibility;
 
   const FocusBuilder({
-    @required this.focusNode,
-    @required this.builder,
-    @required this.onChangeVisibility,
-    Key key,
+    required this.focusNode,
+    required this.builder,
+    required this.onChangeVisibility,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'settings.dart';
 
@@ -16,7 +16,6 @@ Settings _$SettingsFromJson(Map<String, dynamic> json) {
 class _$SettingsTearOff {
   const _$SettingsTearOff();
 
-// ignore: unused_element
   _Settings call(
       {bool allowNewsletter = false, bool allowNotifications = false}) {
     return _Settings(
@@ -25,14 +24,12 @@ class _$SettingsTearOff {
     );
   }
 
-// ignore: unused_element
   Settings fromJson(Map<String, Object> json) {
     return Settings.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Settings = _$SettingsTearOff();
 
 /// @nodoc
@@ -62,8 +59,8 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
 
   @override
   $Res call({
-    Object allowNewsletter = freezed,
-    Object allowNotifications = freezed,
+    Object? allowNewsletter = freezed,
+    Object? allowNotifications = freezed,
   }) {
     return _then(_value.copyWith(
       allowNewsletter: allowNewsletter == freezed
@@ -95,8 +92,8 @@ class __$SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object allowNewsletter = freezed,
-    Object allowNotifications = freezed,
+    Object? allowNewsletter = freezed,
+    Object? allowNotifications = freezed,
   }) {
     return _then(_Settings(
       allowNewsletter: allowNewsletter == freezed
@@ -114,9 +111,7 @@ class __$SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
 /// @nodoc
 class _$_Settings implements _Settings {
   const _$_Settings(
-      {this.allowNewsletter = false, this.allowNotifications = false})
-      : assert(allowNewsletter != null),
-        assert(allowNotifications != null);
+      {this.allowNewsletter = false, this.allowNotifications = false});
 
   factory _$_Settings.fromJson(Map<String, dynamic> json) =>
       _$_$_SettingsFromJson(json);

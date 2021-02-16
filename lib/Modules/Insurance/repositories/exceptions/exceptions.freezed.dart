@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'exceptions.dart';
 
@@ -13,7 +13,6 @@ T _$identity<T>(T value) => value;
 class _$InsuranceFailureTearOff {
   const _$InsuranceFailureTearOff();
 
-// ignore: unused_element
   RetrieveInsuranceFailure retrieveFailure(
       {String description = 'Error retrieving todos'}) {
     return RetrieveInsuranceFailure(
@@ -21,14 +20,12 @@ class _$InsuranceFailureTearOff {
     );
   }
 
-// ignore: unused_element
   AddInsuranceFailure addFailure({String description = 'Error adding todo'}) {
     return AddInsuranceFailure(
       description: description,
     );
   }
 
-// ignore: unused_element
   RemoveInsuranceFailure removeFailure(
       {String description = 'Error removing todo'}) {
     return RemoveInsuranceFailure(
@@ -38,7 +35,6 @@ class _$InsuranceFailureTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $InsuranceFailure = _$InsuranceFailureTearOff();
 
 /// @nodoc
@@ -46,30 +42,30 @@ mixin _$InsuranceFailure {
   String get description;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult retrieveFailure(String description),
-    @required TResult addFailure(String description),
-    @required TResult removeFailure(String description),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String description) retrieveFailure,
+    required TResult Function(String description) addFailure,
+    required TResult Function(String description) removeFailure,
   });
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult retrieveFailure(String description),
-    TResult addFailure(String description),
-    TResult removeFailure(String description),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String description)? retrieveFailure,
+    TResult Function(String description)? addFailure,
+    TResult Function(String description)? removeFailure,
+    required TResult orElse(),
   });
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult retrieveFailure(RetrieveInsuranceFailure value),
-    @required TResult addFailure(AddInsuranceFailure value),
-    @required TResult removeFailure(RemoveInsuranceFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RetrieveInsuranceFailure value) retrieveFailure,
+    required TResult Function(AddInsuranceFailure value) addFailure,
+    required TResult Function(RemoveInsuranceFailure value) removeFailure,
   });
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult retrieveFailure(RetrieveInsuranceFailure value),
-    TResult addFailure(AddInsuranceFailure value),
-    TResult removeFailure(RemoveInsuranceFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RetrieveInsuranceFailure value)? retrieveFailure,
+    TResult Function(AddInsuranceFailure value)? addFailure,
+    TResult Function(RemoveInsuranceFailure value)? removeFailure,
+    required TResult orElse(),
   });
 
   @JsonKey(ignore: true)
@@ -95,7 +91,7 @@ class _$InsuranceFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object description = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       description:
@@ -128,7 +124,7 @@ class _$RetrieveInsuranceFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object description = freezed,
+    Object? description = freezed,
   }) {
     return _then(RetrieveInsuranceFailure(
       description:
@@ -140,8 +136,7 @@ class _$RetrieveInsuranceFailureCopyWithImpl<$Res>
 /// @nodoc
 class _$RetrieveInsuranceFailure implements RetrieveInsuranceFailure {
   const _$RetrieveInsuranceFailure(
-      {this.description = 'Error retrieving todos'})
-      : assert(description != null);
+      {this.description = 'Error retrieving todos'});
 
   @JsonKey(defaultValue: 'Error retrieving todos')
   @override
@@ -173,26 +168,22 @@ class _$RetrieveInsuranceFailure implements RetrieveInsuranceFailure {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult retrieveFailure(String description),
-    @required TResult addFailure(String description),
-    @required TResult removeFailure(String description),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String description) retrieveFailure,
+    required TResult Function(String description) addFailure,
+    required TResult Function(String description) removeFailure,
   }) {
-    assert(retrieveFailure != null);
-    assert(addFailure != null);
-    assert(removeFailure != null);
     return retrieveFailure(description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult retrieveFailure(String description),
-    TResult addFailure(String description),
-    TResult removeFailure(String description),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String description)? retrieveFailure,
+    TResult Function(String description)? addFailure,
+    TResult Function(String description)? removeFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (retrieveFailure != null) {
       return retrieveFailure(description);
     }
@@ -201,26 +192,22 @@ class _$RetrieveInsuranceFailure implements RetrieveInsuranceFailure {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult retrieveFailure(RetrieveInsuranceFailure value),
-    @required TResult addFailure(AddInsuranceFailure value),
-    @required TResult removeFailure(RemoveInsuranceFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RetrieveInsuranceFailure value) retrieveFailure,
+    required TResult Function(AddInsuranceFailure value) addFailure,
+    required TResult Function(RemoveInsuranceFailure value) removeFailure,
   }) {
-    assert(retrieveFailure != null);
-    assert(addFailure != null);
-    assert(removeFailure != null);
     return retrieveFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult retrieveFailure(RetrieveInsuranceFailure value),
-    TResult addFailure(AddInsuranceFailure value),
-    TResult removeFailure(RemoveInsuranceFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RetrieveInsuranceFailure value)? retrieveFailure,
+    TResult Function(AddInsuranceFailure value)? addFailure,
+    TResult Function(RemoveInsuranceFailure value)? removeFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (retrieveFailure != null) {
       return retrieveFailure(this);
     }
@@ -262,7 +249,7 @@ class _$AddInsuranceFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object description = freezed,
+    Object? description = freezed,
   }) {
     return _then(AddInsuranceFailure(
       description:
@@ -273,8 +260,7 @@ class _$AddInsuranceFailureCopyWithImpl<$Res>
 
 /// @nodoc
 class _$AddInsuranceFailure implements AddInsuranceFailure {
-  const _$AddInsuranceFailure({this.description = 'Error adding todo'})
-      : assert(description != null);
+  const _$AddInsuranceFailure({this.description = 'Error adding todo'});
 
   @JsonKey(defaultValue: 'Error adding todo')
   @override
@@ -305,26 +291,22 @@ class _$AddInsuranceFailure implements AddInsuranceFailure {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult retrieveFailure(String description),
-    @required TResult addFailure(String description),
-    @required TResult removeFailure(String description),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String description) retrieveFailure,
+    required TResult Function(String description) addFailure,
+    required TResult Function(String description) removeFailure,
   }) {
-    assert(retrieveFailure != null);
-    assert(addFailure != null);
-    assert(removeFailure != null);
     return addFailure(description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult retrieveFailure(String description),
-    TResult addFailure(String description),
-    TResult removeFailure(String description),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String description)? retrieveFailure,
+    TResult Function(String description)? addFailure,
+    TResult Function(String description)? removeFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (addFailure != null) {
       return addFailure(description);
     }
@@ -333,26 +315,22 @@ class _$AddInsuranceFailure implements AddInsuranceFailure {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult retrieveFailure(RetrieveInsuranceFailure value),
-    @required TResult addFailure(AddInsuranceFailure value),
-    @required TResult removeFailure(RemoveInsuranceFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RetrieveInsuranceFailure value) retrieveFailure,
+    required TResult Function(AddInsuranceFailure value) addFailure,
+    required TResult Function(RemoveInsuranceFailure value) removeFailure,
   }) {
-    assert(retrieveFailure != null);
-    assert(addFailure != null);
-    assert(removeFailure != null);
     return addFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult retrieveFailure(RetrieveInsuranceFailure value),
-    TResult addFailure(AddInsuranceFailure value),
-    TResult removeFailure(RemoveInsuranceFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RetrieveInsuranceFailure value)? retrieveFailure,
+    TResult Function(AddInsuranceFailure value)? addFailure,
+    TResult Function(RemoveInsuranceFailure value)? removeFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (addFailure != null) {
       return addFailure(this);
     }
@@ -394,7 +372,7 @@ class _$RemoveInsuranceFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object description = freezed,
+    Object? description = freezed,
   }) {
     return _then(RemoveInsuranceFailure(
       description:
@@ -405,8 +383,7 @@ class _$RemoveInsuranceFailureCopyWithImpl<$Res>
 
 /// @nodoc
 class _$RemoveInsuranceFailure implements RemoveInsuranceFailure {
-  const _$RemoveInsuranceFailure({this.description = 'Error removing todo'})
-      : assert(description != null);
+  const _$RemoveInsuranceFailure({this.description = 'Error removing todo'});
 
   @JsonKey(defaultValue: 'Error removing todo')
   @override
@@ -438,26 +415,22 @@ class _$RemoveInsuranceFailure implements RemoveInsuranceFailure {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult retrieveFailure(String description),
-    @required TResult addFailure(String description),
-    @required TResult removeFailure(String description),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String description) retrieveFailure,
+    required TResult Function(String description) addFailure,
+    required TResult Function(String description) removeFailure,
   }) {
-    assert(retrieveFailure != null);
-    assert(addFailure != null);
-    assert(removeFailure != null);
     return removeFailure(description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult retrieveFailure(String description),
-    TResult addFailure(String description),
-    TResult removeFailure(String description),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String description)? retrieveFailure,
+    TResult Function(String description)? addFailure,
+    TResult Function(String description)? removeFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (removeFailure != null) {
       return removeFailure(description);
     }
@@ -466,26 +439,22 @@ class _$RemoveInsuranceFailure implements RemoveInsuranceFailure {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult retrieveFailure(RetrieveInsuranceFailure value),
-    @required TResult addFailure(AddInsuranceFailure value),
-    @required TResult removeFailure(RemoveInsuranceFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RetrieveInsuranceFailure value) retrieveFailure,
+    required TResult Function(AddInsuranceFailure value) addFailure,
+    required TResult Function(RemoveInsuranceFailure value) removeFailure,
   }) {
-    assert(retrieveFailure != null);
-    assert(addFailure != null);
-    assert(removeFailure != null);
     return removeFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult retrieveFailure(RetrieveInsuranceFailure value),
-    TResult addFailure(AddInsuranceFailure value),
-    TResult removeFailure(RemoveInsuranceFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RetrieveInsuranceFailure value)? retrieveFailure,
+    TResult Function(AddInsuranceFailure value)? addFailure,
+    TResult Function(RemoveInsuranceFailure value)? removeFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (removeFailure != null) {
       return removeFailure(this);
     }

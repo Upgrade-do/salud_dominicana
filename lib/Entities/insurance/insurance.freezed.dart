@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'insurance.dart';
 
@@ -16,7 +16,6 @@ Insurance _$InsuranceFromJson(Map<String, dynamic> json) {
 class _$InsuranceTearOff {
   const _$InsuranceTearOff();
 
-// ignore: unused_element
   _Insurance call(double insuranceId, String name) {
     return _Insurance(
       insuranceId,
@@ -24,14 +23,12 @@ class _$InsuranceTearOff {
     );
   }
 
-// ignore: unused_element
   Insurance fromJson(Map<String, Object> json) {
     return Insurance.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Insurance = _$InsuranceTearOff();
 
 /// @nodoc
@@ -61,8 +58,8 @@ class _$InsuranceCopyWithImpl<$Res> implements $InsuranceCopyWith<$Res> {
 
   @override
   $Res call({
-    Object insuranceId = freezed,
-    Object name = freezed,
+    Object? insuranceId = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
       insuranceId:
@@ -92,8 +89,8 @@ class __$InsuranceCopyWithImpl<$Res> extends _$InsuranceCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object insuranceId = freezed,
-    Object name = freezed,
+    Object? insuranceId = freezed,
+    Object? name = freezed,
   }) {
     return _then(_Insurance(
       insuranceId == freezed ? _value.insuranceId : insuranceId as double,
@@ -106,9 +103,7 @@ class __$InsuranceCopyWithImpl<$Res> extends _$InsuranceCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Insurance implements _Insurance {
-  const _$_Insurance(this.insuranceId, this.name)
-      : assert(insuranceId != null),
-        assert(name != null);
+  const _$_Insurance(this.insuranceId, this.name);
 
   factory _$_Insurance.fromJson(Map<String, dynamic> json) =>
       _$_$_InsuranceFromJson(json);

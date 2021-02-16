@@ -2,7 +2,7 @@ import 'package:salud_dominicana/Entities/insurance/insurance.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class InsuranceList extends StateNotifier<List<Insurance>> {
-  InsuranceList([List<Insurance> initialState]) : super(initialState ?? []);
+  InsuranceList({required List<Insurance> initial}) : super(initial);
 
   void add(Insurance value) {
     state = [

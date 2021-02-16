@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSimplePreferences {
-  static SharedPreferences _preferences;
+  static late SharedPreferences _preferences;
 
   static const _keyUsername = 'username';
   static const _keyPets = 'pets';
@@ -14,14 +14,13 @@ class UserSimplePreferences {
   static Future setUsername(String username) async =>
       await _preferences.setString(_keyUsername, username);
 
-  static String getUsername() => _preferences.getString(_keyUsername);
+  static String getUsername() => _preferences.getString(_keyUsername) ?? '';
 
   // pets
   static Future setPets(List<String> pets) async =>
       await _preferences.setStringList(_keyPets, pets);
 
-  static List<String> getPets() => _preferences.getStringList(_keyPets);
-
+  static List<String> getPets() => _preferences.getStringList(_keyPets) ?? [''];
 
   //birth day
   static Future setBirthday(DateTime dateOfBirth) async {
@@ -33,7 +32,7 @@ class UserSimplePreferences {
   static DateTime getBirthday() {
     final birthday = _preferences.getString(_keyBirthday);
 
-    return birthday == null ? null : DateTime.tryParse(birthday);
+    return DateTime.tryParse(birthday ?? '') ?? DateTime.now();
   }
 
   //

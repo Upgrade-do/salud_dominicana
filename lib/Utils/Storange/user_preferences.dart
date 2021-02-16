@@ -1,10 +1,10 @@
-
 import 'dart:convert';
+
 import 'package:salud_dominicana/Entities/user/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {
-  static SharedPreferences _preferences;
+  static late SharedPreferences _preferences;
 
   static const _keyUsers = 'users';
 
@@ -19,7 +19,7 @@ class UserPreferences {
   }
 
   static User getUser(String idUser) {
-    final  json = _preferences.getString(idUser) as User;
+    final json = _preferences.getString(idUser) as User;
 
     return User.fromJson(json.toJson());
   }
@@ -36,10 +36,9 @@ class UserPreferences {
 
     if (idUsers == null) {
       return <User>[];
-    }
-    else {
+    } else {
       //return <User>[];
-       return idUsers.map<User>(getUser).toList();
+      return idUsers.map<User>(getUser).toList();
     }
   }
 }

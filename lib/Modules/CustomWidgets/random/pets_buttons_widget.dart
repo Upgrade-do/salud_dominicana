@@ -5,9 +5,9 @@ class PetsButtonsWidget extends StatelessWidget {
   final ValueChanged<String> onSelectedPet;
 
   const PetsButtonsWidget({
-    Key key,
-    @required this.pets,
-    @required this.onSelectedPet,
+    Key? key,
+    required this.pets,
+    required this.onSelectedPet,
   }) : super(key: key);
 
   @override
